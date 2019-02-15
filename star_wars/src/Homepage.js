@@ -3,19 +3,19 @@ import './Homepage.css';
 
 class Homepage extends React.Component{
 
+    // constructor(props){
+    //     super(props)
+    //     this.state({
+    //         name: null
+    //     })
+    // }
+
     getCharacterName = (searchName) => {
-        const url = 'https://swapi.co/api/'
+        // const url = 'https://swapi.co/api/'
 
-        console.log(url);
+        // console.log(url);
         console.log(searchName);
-        fetch (`https://swapi.com/api/people/:${searchName}`,
-              { method: 'GET',
-                headers: {
-                    'Content Type': '/application/json'
-                },
-                body: JSON.stringify({name: searchName})
-
-        })
+        fetch (`https://swapi.co/api/people/?search=${searchName}`)
         .then(res => {
             if (!res.ok){
                 return res.json()
@@ -23,8 +23,17 @@ class Homepage extends React.Component{
             }
             return res.json(); })
         .then (data =>{ 
-            console.log(data); 
+            const jedi = data.results.map(person => {
+                console.log('person', person);
+                return  person.name
+            }) 
+            //   
+            // const empire = jedi.map(char => {
+            //     return jedi.name = char.name
+            
+            console.log(jedi);
         })
+        
         .catch(error =>{
             console.log(error); 
         })

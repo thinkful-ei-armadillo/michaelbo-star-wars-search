@@ -12,6 +12,43 @@ class App extends Component {
   //   })
   // }
 
+state = {
+  searchName: '',
+  list: []
+}
+
+displayResults = (data) => {
+    console.log(data);
+    const results = data.results.map(character => {
+      return {
+        name: character.name
+      }
+    })
+    console.log(results.name);
+}
+
+// getCharacterName = (searchName) => {
+//   const url = 'https://swapi.co/api/'
+
+//   console.log(url);
+//   console.log(searchName);
+//   fetch (`https://swapi.co/api/people/?search=${searchName}`)
+//   .then(res => {
+//       if (!res.ok){
+//           return res.json()
+//           .then(error => {throw error});
+//       }
+//       return res.json(); })
+//   .then (data =>{ 
+//       this.props.displayResults(data)
+//   })
+  
+//   .catch(error =>{
+//       console.log(error); 
+//   })
+
+// }
+
   render() {
     return (
       <>
@@ -21,11 +58,10 @@ class App extends Component {
         </header>
         <Route 
             path={'/'}
+            value={this.state.searchName}
             component={Homepage}/>
          <div className="swapi-search-results">
-            <Route 
-               path={'/search-results'}
-               component={SearchResults}/>
+            <SearchResults list={this.state.list}/>
              
 
         </div>
