@@ -1,5 +1,5 @@
 import React from 'react'
-import './Homepage.css';
+
 
 class Homepage extends React.Component{
 
@@ -11,10 +11,7 @@ class Homepage extends React.Component{
     // }
 
     getCharacterName = (searchName) => {
-        // const url = 'https://swapi.co/api/'
-
-        // console.log(url);
-        console.log(searchName);
+       
         fetch (`https://swapi.co/api/people/?search=${searchName}`)
         .then(res => {
             if (!res.ok){
@@ -27,9 +24,7 @@ class Homepage extends React.Component{
                 console.log('person', person);
                 return  person.name
             }) 
-            //   
-            // const empire = jedi.map(char => {
-            //     return jedi.name = char.name
+           
             
             console.log(jedi);
         })
